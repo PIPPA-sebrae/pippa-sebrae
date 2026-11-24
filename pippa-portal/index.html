@@ -588,6 +588,17 @@ const TOOLS = [
     descricao: "Dashboard de inteligência em proteção social com dados do Portal da Transparência (CGU) e IBGE Censo 2022. Monitora 5 programas vinculados ao Cadastro Único — Novo Bolsa Família, BPC, PETI, Garantia-Safra e Seguro Defeso — com indicadores de cobertura, classificação territorial de vulnerabilidade e nota técnica para decisores.",
     features: ["5 programas sociais monitorados", "API Portal da Transparência (CGU)", "IBGE Censo 2022 (população)", "Cobertura e vulnerabilidade por UF/município", "Nota técnica para decisores", "Comparativo de até 5 municípios", "Série temporal e tendência", "Mapa coroplético por UF", "Classificação de vulnerabilidade", "Exportar texto de advocacy"],
     destaque: "Descubra onde a proteção social é mais frágil e onde o empreendedorismo pode ser alternativa. Cruza dados de Bolsa Família, BPC e outros programas com população do Censo 2022 para gerar indicadores de cobertura, classificar vulnerabilidade territorial e produzir notas técnicas prontas para decisores."
+  },
+  {
+    id: "regulacaopet",
+    nome: "PIPPA Regulacao PET",
+    subtitulo: "Analise de Impacto Regulatorio — Fauna Silvestre",
+    accent: "#f39d72",
+    icon: "🐾",
+    url: "../pippa-regulacao-pet/index.html",
+    descricao: "Dashboard de analise de impacto regulatorio da Instrucao Normativa do IBAMA que institui a lista de especies silvestres nativas autorizadas para criacao e comercializacao como animais de estimacao. Mapeia 182 mil estabelecimentos e 233 mil empregos formais (RAIS 2025) em 6 CNAEs da cadeia PET — pet shops, veterinarias, criadores, fabricantes e atacadistas de racao — com mapa coropletico, classificacao por porte e pontos de incidencia pro-MPE.",
+    features: ["6 CNAEs da cadeia PET completa", "182.052 estabelecimentos mapeados", "233.482 empregos formais (RAIS 2025)", "Mapa coropletico com 8 filtros", "Classificacao por porte (96,6% MPE)", "52 especies do Anexo I (aves e repteis)", "Prazos de transicao e custos de conformidade", "Pontos de incidencia e posicionamento SEBRAE", "Exportar WhatsApp"],
+    destaque: "Dimensione o impacto da IN IBAMA sobre a cadeia PET silvestre. 182 mil estabelecimentos e 233 mil empregos em 6 segmentos — de criadouros a pet shops — com analise de prazos, custos de conformidade e pontos de incidencia para o SEBRAE na consulta publica."
   }
 ];
 
@@ -639,7 +650,11 @@ const QUESTIONS = [
   { texto: "Quero uma visao de portfolio de evidencias da UPP", ferramentas: ["impacto", "atuacaoupp"], macro: "estrategia" },
   { texto: "Qual a cobertura de programas sociais por município?", ferramentas: ["cadunico"], macro: "territorial" },
   { texto: "Onde a proteção social é mais frágil no Brasil?", ferramentas: ["cadunico"], macro: "territorial" },
-  { texto: "Preciso de dados de Bolsa Família e BPC por território", ferramentas: ["cadunico", "raioxmunicipal"], macro: "territorial" }
+  { texto: "Preciso de dados de Bolsa Família e BPC por território", ferramentas: ["cadunico", "raioxmunicipal"], macro: "territorial" },
+  { texto: "Qual o impacto da IN IBAMA sobre o setor PET?", ferramentas: ["regulacaopet"], macro: "legislativo" },
+  { texto: "Quantos estabelecimentos e empregos tem a cadeia PET?", ferramentas: ["regulacaopet"], macro: "territorial" },
+  { texto: "Quais especies silvestres podem ser criadas como animais de estimacao?", ferramentas: ["regulacaopet"], macro: "legislativo" },
+  { texto: "Preciso de analise regulatoria completa para MPEs", ferramentas: ["regulacaopet", "regulatorio", "legislativo"], macro: "legislativo" }
 ];
 
 const MACRO_TEMAS = [
