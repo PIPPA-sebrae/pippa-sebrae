@@ -53,6 +53,11 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .info-modal .info-footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--text-muted);text-align:center;line-height:1.6}
 .info-close{float:right;background:none;border:none;color:var(--text-muted);font-size:20px;cursor:pointer;padding:0 4px}
 .info-close:hover{color:var(--text)}
+.portal-btn{display:inline-flex;align-items:center;gap:6px;background:var(--highlight-bg);border:1px solid var(--border);color:var(--text-accent);padding:7px 14px;border-radius:var(--radius);font-size:11.5px;font-weight:600;font-family:inherit;cursor:pointer;text-decoration:none;transition:all .2s;white-space:nowrap}
+.portal-btn:hover{background:var(--accent-ring);border-color:var(--accent);color:var(--text-accent)}
+.portal-btn svg{width:14px;height:14px}
+.wa-btn{background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.25);color:#25d366}
+.wa-btn:hover{background:rgba(37,211,102,.15);border-color:#25d366;color:#25d366}
 .theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:transparent;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;color:var(--text-muted);transition:all .2s}
 .theme-toggle:hover{border-color:var(--accent);color:var(--text-accent);background:var(--highlight-bg)}
 .theme-toggle svg{width:16px;height:16px}
@@ -115,9 +120,9 @@ main{flex:1}
 .impact-list{list-style:none;padding:0;margin-top:12px}
 .impact-list li{font-size:13px;padding:4px 0;display:flex;align-items:flex-start;gap:8px;color:var(--text-muted)}
 .impact-list li::before{content:'\25B8';color:var(--accent);flex-shrink:0}
-.advocacy-card{background:var(--surface);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin-bottom:10px}
-.advocacy-card h5{font-family:var(--font-heading);font-size:13px;font-weight:700;margin-bottom:6px}
-.advocacy-card p{font-size:13px;color:var(--text-muted);line-height:1.6}
+.incidencia-card{background:var(--surface);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin-bottom:10px}
+.incidencia-card h5{font-family:var(--font-heading);font-size:13px;font-weight:700;margin-bottom:6px}
+.incidencia-card p{font-size:13px;color:var(--text-muted);line-height:1.6}
 .status-banner{background:linear-gradient(135deg,var(--accent),var(--atlantico));color:#fff;border-radius:var(--radius);padding:20px 24px;margin-bottom:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .status-banner h3{font-family:var(--font-heading);font-size:16px;font-weight:800}
 .status-banner p{font-size:13px;opacity:.85}
@@ -142,6 +147,7 @@ main{flex:1}
   .kpi-bar{grid-template-columns:repeat(2,1fr)}
   .card-grid{grid-template-columns:1fr}
   .regulation-meta{grid-template-columns:repeat(2,1fr)}
+  .portal-btn span{display:none}
 }
 </style>
 </head>
@@ -154,6 +160,14 @@ main{flex:1}
     </div>
   </div>
   <div class="header-controls">
+    <a href="../pippa-portal/index.html" class="portal-btn" title="Voltar ao PIPPA Portal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>PIPPA Portal</span>
+    </a>
+    <button class="portal-btn wa-btn" onclick="exportWhatsApp()" title="Compartilhar via WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span>WhatsApp</span>
+    </button>
     <button class="info-btn" onclick="document.getElementById('infoModal').classList.add('active')" title="Sobre">?</button>
     <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">
       <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -168,7 +182,7 @@ main{flex:1}
     <h2>PIPPA Regulacao PET</h2>
     <p>Dashboard de analise de impacto regulatorio da Instrucao Normativa do IBAMA que institui a lista de especies silvestres nativas autorizadas para criacao e comercializacao como animais de estimacao.</p>
     <h3>Objetivo</h3>
-    <p>Subsidiar a atuacao do SEBRAE na consulta publica, dimensionando o impacto nos pequenos negocios da cadeia PET silvestre e identificando pontos de advocacy pro-MPE.</p>
+    <p>Subsidiar a atuacao do SEBRAE na consulta publica, dimensionando o impacto nos pequenos negocios da cadeia PET silvestre e identificando pontos de incidencia pro-MPE.</p>
     <h3>Fontes de Dados</h3>
     <ul>
       <li>Receita Federal do Brasil — Cadastro CNPJ (via Observatorio Sebrae, cubo RF Tesseract)</li>
@@ -182,8 +196,8 @@ main{flex:1}
       <li>7500-1/00 — Atividades veterinarias</li>
     </ul>
     <div class="info-footer">
-      PIPPA — Plataforma de Inteligencia para Politicas Publicas e Advocacy<br>
-      SEBRAE Nacional — Unidade de Gestao Estrategica / Observatorio
+      PIPPA — Plataforma de Inteligencia em Politicas Publicas Aplicadas<br>
+      SEBRAE Nacional — Unidade de Politicas Publicas
     </div>
   </div>
 </div>
@@ -192,7 +206,7 @@ main{flex:1}
   <button class="tab active" onclick="switchTab('panorama')">Panorama do Mercado</button>
   <button class="tab" onclick="switchTab('normativa')">Instrucao Normativa</button>
   <button class="tab" onclick="switchTab('impacto')">Impacto por Segmento</button>
-  <button class="tab" onclick="switchTab('advocacy')">Janela de Advocacy</button>
+  <button class="tab" onclick="switchTab('incidencia')">Janela de Incidencia</button>
 </nav>
 
 <main>
@@ -418,8 +432,8 @@ main{flex:1}
   </div>
 </div>
 
-<!-- TAB 4: ADVOCACY -->
-<div id="tab-advocacy" class="tab-content">
+<!-- TAB 4: INCIDENCIA -->
+<div id="tab-incidencia" class="tab-content">
   <div class="status-banner">
     <div class="status-dot"></div>
     <div>
@@ -428,34 +442,34 @@ main{flex:1}
     </div>
   </div>
 
-  <div class="section-title">Pontos de Advocacy para o SEBRAE</div>
+  <div class="section-title">Pontos de Incidencia para o SEBRAE</div>
 
-  <div class="advocacy-card">
+  <div class="incidencia-card">
     <h5>1. Prazos de transicao insuficientes para MPEs</h5>
     <p>O prazo de 90 dias para cessar reproducao e 180 dias para alienar especimes e incompativel com a realidade operacional de pequenos criadouros e pet shops. Recomendacao: ampliar para no minimo 1 ano (reproducao) e 2 anos (alienacao), com possibilidade de prorrogacao mediante justificativa tecnica.</p>
   </div>
 
-  <div class="advocacy-card">
+  <div class="incidencia-card">
     <h5>2. Custo de conformidade desproporcional para MEI/ME</h5>
     <p>Exigencias como registro em cartorio com reconhecimento de firma para transferencia de animais, marcacao definitiva e registro em SisFauna representam custos fixos que impactam desproporcionalmente os 61 mil MEIs do setor. Recomendacao: simplificar processos para MEI/ME com procedimentos digitais e taxas reduzidas.</p>
   </div>
 
-  <div class="advocacy-card">
+  <div class="incidencia-card">
     <h5>3. Capacitacao em manejo de fauna silvestre</h5>
     <p>A IN exige conhecimentos tecnicos especificos (marcacao, recintos, dieta por especie) que a maioria dos pequenos empreendedores nao possui. O SEBRAE pode liderar programas de capacitacao em parceria com o IBAMA e conselhos de medicina veterinaria, cobrindo as 52 especies do Anexo I.</p>
   </div>
 
-  <div class="advocacy-card">
+  <div class="incidencia-card">
     <h5>4. Ampliacao do Anexo I com viabilidade comercial</h5>
     <p>A lista de apenas 52 especies (51 aves e 1 reptil) exclui grupos com alta demanda comercial e viabilidade de criacao em cativeiro, como quelonios (jabutis), anfibios e outros repteis. A exclusao pode inviabilizar criadouros especializados. Recomendacao: incluir especies com reproducao comprovada em cativeiro.</p>
   </div>
 
-  <div class="advocacy-card">
+  <div class="incidencia-card">
     <h5>5. Simplificacao do SisFauna para pequenos empreendedores</h5>
     <p>O sistema SisFauna historicamente apresenta dificuldades de acesso e usabilidade. A IN condiciona toda a regularidade ao sistema. Recomendacao: exigir que o IBAMA disponibilize versao simplificada do SisFauna com suporte tecnico dedicado a MPEs.</p>
   </div>
 
-  <div class="advocacy-card">
+  <div class="incidencia-card">
     <h5>6. Programa de credito para adequacao de recintos</h5>
     <p>As dimensoes minimas do Anexo II exigem investimento significativo em infraestrutura (viveiros, terrarios, paludarios). Os 665 criadouros e milhares de tutores precisarao adequar instalacoes. Recomendacao: articular linha de credito especifica via FAMPE ou programas estaduais.</p>
   </div>
@@ -480,8 +494,9 @@ main{flex:1}
 </main>
 
 <footer class="footer">
-  Fonte: Receita Federal do Brasil (via Observatorio Sebrae, cubo RF Tesseract) | IBAMA — Minuta IN Consulta Publica 2026<br>
-  PIPPA — Plataforma de Inteligencia para Politicas Publicas e Advocacy | SEBRAE Nacional
+  PIPPA — Plataforma de Inteligencia em Politicas Publicas Aplicadas<br>
+  SEBRAE Nacional — Unidade de Politicas Publicas<br>
+  Fonte: Receita Federal do Brasil (via Observatorio Sebrae) | IBAMA — Minuta IN Consulta Publica 2026
 </footer>
 
 <script>
@@ -557,7 +572,7 @@ function switchTab(id){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   const tabs=document.querySelectorAll('.tab');
-  const idx={panorama:0,normativa:1,impacto:2,advocacy:3}[id];
+  const idx={panorama:0,normativa:1,impacto:2,incidencia:3}[id];
   if(tabs[idx])tabs[idx].classList.add('active');
 }
 
@@ -713,6 +728,27 @@ function renderMapa(){
   });
 
   svgEl.addEventListener('mouseleave',function(){resetPath(activePath);activePath=null;mapTooltipEl.style.display='none'});
+}
+
+function exportWhatsApp(){
+  const activeTab=document.querySelector('.tab.active');
+  const tabName=activeTab?activeTab.textContent.trim():'Panorama';
+  let txt='*PIPPA Regulacao PET — Analise de Impacto Regulatorio*\n';
+  txt+='_Fauna Silvestre | SEBRAE Nacional — UPP_\n\n';
+  txt+='*Cadeia PET Silvestre no Brasil*\n';
+  txt+='Total: 164.410 estabelecimentos\n';
+  txt+='Pet Shops: 117.165 | Veterinarias: 46.580 | Criadouros: 665\n';
+  txt+='96,2% sao MPEs (MEI + ME + EPP)\n\n';
+  txt+='*IN IBAMA — Lista de Especies Silvestres*\n';
+  txt+='52 especies autorizadas (51 aves + 1 reptil)\n';
+  txt+='Prazos: 90 dias (cessar reproducao) | 180 dias (alienar especimes)\n\n';
+  txt+='*Impacto por Segmento*\n';
+  txt+='Criadouros: ALTO | Pet Shops: ALTO\n';
+  txt+='Insumos Pet: MEDIO | Veterinarias: POSITIVO\n\n';
+  txt+='Consulta Publica: brasilparticipativo.presidencia.gov.br/processes/listaestimacao/f/6223/\n\n';
+  txt+='_Fonte: Receita Federal (Observatorio Sebrae) | IBAMA 2026_';
+  const url='https://wa.me/?text='+encodeURIComponent(txt);
+  window.open(url,'_blank');
 }
 
 document.addEventListener('DOMContentLoaded',function(){initCharts();renderMapa()});
