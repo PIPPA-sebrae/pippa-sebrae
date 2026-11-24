@@ -192,8 +192,11 @@ main{flex:1}
     <h3>CNAEs Analisados</h3>
     <ul>
       <li>4789-0/04 — Comercio varejista de animais vivos e artigos para animais de estimacao</li>
-      <li>0159-8/99 — Criacao de outros animais nao especificados anteriormente</li>
       <li>7500-1/00 — Atividades veterinarias</li>
+      <li>0159-8/02 — Criacao de animais de estimacao</li>
+      <li>0159-8/99 — Criacao de outros animais nao especificados anteriormente</li>
+      <li>1066-0/00 — Fabricacao de alimentos para animais</li>
+      <li>4623-1/09 — Comercio atacadista de racoes e alimentos para animais</li>
     </ul>
     <div class="info-footer">
       PIPPA — Plataforma de Inteligencia em Politicas Publicas Aplicadas<br>
@@ -214,21 +217,22 @@ main{flex:1}
 <!-- TAB 1: PANORAMA -->
 <div id="tab-panorama" class="tab-content active">
   <div class="kpi-bar">
-    <div class="kpi-card"><div class="kpi-label">Estabelecimentos na Cadeia PET</div><div class="kpi-value kpi-accent">164.410</div><div class="kpi-detail">3 CNAEs combinados</div></div>
-    <div class="kpi-card"><div class="kpi-label">Pet Shops</div><div class="kpi-value kpi-cyan">117.165</div><div class="kpi-detail">CNAE 4789-0/04</div></div>
+    <div class="kpi-card"><div class="kpi-label">Estabelecimentos na Cadeia PET</div><div class="kpi-value kpi-accent">182.052</div><div class="kpi-detail">6 CNAEs combinados</div></div>
+    <div class="kpi-card"><div class="kpi-label">Empregos Formais (RAIS 2025)</div><div class="kpi-value kpi-cyan">233.482</div><div class="kpi-detail">Cadeia PET completa</div></div>
+    <div class="kpi-card"><div class="kpi-label">Pet Shops</div><div class="kpi-value" style="color:var(--accent)">117.165</div><div class="kpi-detail">CNAE 4789-0/04</div></div>
     <div class="kpi-card"><div class="kpi-label">Clinicas Veterinarias</div><div class="kpi-value kpi-green">46.580</div><div class="kpi-detail">CNAE 7500-1/00</div></div>
-    <div class="kpi-card"><div class="kpi-label">Criadouros</div><div class="kpi-value kpi-purple">665</div><div class="kpi-detail">CNAE 0159-8/99</div></div>
-    <div class="kpi-card"><div class="kpi-label">MPEs (MEI+ME+EPP)</div><div class="kpi-value kpi-orange">96,2%</div><div class="kpi-detail">158.153 estabelecimentos</div></div>
+    <div class="kpi-card"><div class="kpi-label">Criadores de Estimacao</div><div class="kpi-value kpi-purple">5.565</div><div class="kpi-detail">CNAE 0159-8/02</div></div>
+    <div class="kpi-card"><div class="kpi-label">MPEs (MEI+ME+EPP)</div><div class="kpi-value kpi-orange">96,6%</div><div class="kpi-detail">175.949 de 182.052</div></div>
   </div>
 
   <div class="card-grid">
     <div class="card">
-      <h4>Top 10 Estados — Estabelecimentos PET</h4>
+      <h4>Top 10 Estados — Estabelecimentos Cadeia PET</h4>
       <div class="chart-container"><canvas id="chartTop10UF"></canvas></div>
     </div>
     <div class="card">
       <h4>Distribuicao por Segmento</h4>
-      <div class="chart-container-sm"><canvas id="chartSegmento"></canvas></div>
+      <div class="chart-container"><canvas id="chartSegmento"></canvas></div>
     </div>
   </div>
 
@@ -238,16 +242,31 @@ main{flex:1}
       <div class="chart-container-sm"><canvas id="chartPorte"></canvas></div>
     </div>
     <div class="card">
+      <h4>Empregos Formais por Segmento (RAIS 2025)</h4>
+      <div class="chart-container-sm"><canvas id="chartEmprego"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
       <h4>
         Mapa por UF
         <select id="selMapCnae" class="select-input" style="margin-left:auto" onchange="renderMapa()">
-          <option value="total">Total (3 CNAEs)</option>
+          <option value="total">Total (6 CNAEs)</option>
           <option value="petshop">Pet Shops</option>
           <option value="vet">Veterinarias</option>
-          <option value="criadouro">Criadouros</option>
+          <option value="criador">Criadores de Estimacao</option>
+          <option value="outros">Criacao Outros Animais</option>
+          <option value="racao">Fabricacao de Racao</option>
+          <option value="atacadista">Atacadista Racao</option>
+          <option value="emprego">Empregos Formais</option>
         </select>
       </h4>
       <div id="mapaContainer"></div>
+    </div>
+    <div class="card">
+      <h4>Top 10 Estados — Empregos Formais</h4>
+      <div class="chart-container"><canvas id="chartTop10Emp"></canvas></div>
     </div>
   </div>
 </div>
@@ -372,7 +391,7 @@ main{flex:1}
         <h5>Criadouros Comerciais</h5>
         <span class="impact-badge impact-alto">Impacto Alto</span>
       </div>
-      <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">665 estabelecimentos | 46,5% ME + EPP</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">6.230 estabelecimentos (5.565 criadores de estimacao + 665 criadores outros) | RAIS: 4.937 empregos</div>
       <ul class="impact-list">
         <li>Restricao a apenas 52 especies no Anexo I — criadores com especies fora da lista precisam encerrar linhas de producao</li>
         <li>Prazos curtos: 90 dias para cessar reproducao, 180 dias para alienar especimes</li>
@@ -387,7 +406,7 @@ main{flex:1}
         <h5>Pet Shops / Revendedores</h5>
         <span class="impact-badge impact-alto">Impacto Alto</span>
       </div>
-      <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">117.165 estabelecimentos | 98,8% MPE (52,1% MEI)</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">117.165 estabelecimentos | 86.636 empregos (RAIS) | 98,8% MPE (52,1% MEI)</div>
       <ul class="impact-list">
         <li>Manual de Guarda Responsavel obrigatorio com 14 itens a cada venda — custo operacional novo</li>
         <li>Documentacao completa exigida: Certificado de Origem, nota fiscal, marcacao compativel</li>
@@ -416,7 +435,7 @@ main{flex:1}
         <h5>Clinicas Veterinarias</h5>
         <span class="impact-badge impact-positivo">Impacto Positivo</span>
       </div>
-      <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">46.580 estabelecimentos | 97,1% MPE (87,4% ME)</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">46.580 estabelecimentos | 38.859 empregos (RAIS) | 97,1% MPE (87,4% ME)</div>
       <ul class="impact-list">
         <li><strong style="color:var(--green)">Oportunidade:</strong> acompanhamento veterinario anual torna-se obrigatorio</li>
         <li><strong style="color:var(--green)">Oportunidade:</strong> especializacao em fauna silvestre como diferencial competitivo</li>
@@ -471,14 +490,14 @@ main{flex:1}
 
   <div class="incidencia-card">
     <h5>6. Programa de credito para adequacao de recintos</h5>
-    <p>As dimensoes minimas do Anexo II exigem investimento significativo em infraestrutura (viveiros, terrarios, paludarios). Os 665 criadouros e milhares de tutores precisarao adequar instalacoes. Recomendacao: articular linha de credito especifica via FAMPE ou programas estaduais.</p>
+    <p>As dimensoes minimas do Anexo II exigem investimento significativo em infraestrutura (viveiros, terrarios, paludarios). Os 6.230 criadouros e milhares de tutores precisarao adequar instalacoes. Recomendacao: articular linha de credito especifica via FAMPE ou programas estaduais.</p>
   </div>
 
   <div class="card" style="margin-top:16px">
     <h4>Modelo de Posicionamento Institucional</h4>
     <div class="position-box">
       <h5>Posicionamento do SEBRAE sobre a IN IBAMA — Lista de Especies Silvestres para Estimacao</h5>
-      <p>O SEBRAE reconhece a importancia da regulamentacao do mercado de animais silvestres como instrumento de conservacao da biodiversidade e combate ao trafico. Contudo, manifesta preocupacao com os impactos da presente minuta sobre os <strong>164 mil estabelecimentos</strong> da cadeia PET no Brasil, dos quais <strong>96,2% sao micro e pequenas empresas</strong>.</p>
+      <p>O SEBRAE reconhece a importancia da regulamentacao do mercado de animais silvestres como instrumento de conservacao da biodiversidade e combate ao trafico. Contudo, manifesta preocupacao com os impactos da presente minuta sobre os <strong>182 mil estabelecimentos</strong> e <strong>233 mil empregos formais</strong> da cadeia PET no Brasil, dos quais <strong>96,6% sao micro e pequenas empresas</strong>.</p>
       <p style="margin-top:8px">Solicitamos que a versao final da IN considere: (i) a ampliacao dos prazos de transicao proporcionais ao porte do empreendimento; (ii) a simplificacao dos processos burocraticos para MEI e ME; (iii) a criacao de programa de capacitacao em parceria IBAMA-SEBRAE; e (iv) mecanismos de credito para adequacao de infraestrutura.</p>
       <p style="margin-top:8px">O SEBRAE coloca-se a disposicao para colaborar na construcao de solucoes que conciliem conservacao ambiental com a sustentabilidade economica dos pequenos negocios.</p>
     </div>
@@ -496,7 +515,7 @@ main{flex:1}
 <footer class="footer">
   PIPPA — Plataforma de Inteligencia em Politicas Publicas Aplicadas<br>
   SEBRAE Nacional — Unidade de Politicas Publicas<br>
-  Fonte: Receita Federal do Brasil (via Observatorio Sebrae) | IBAMA — Minuta IN Consulta Publica 2026
+  Fonte: Receita Federal do Brasil + RAIS 2025 (via Observatorio Sebrae) | IBAMA — Minuta IN Consulta Publica 2026
 </footer>
 
 <script>
@@ -532,12 +551,21 @@ const UF_PATHS={
 'Tocantins':'M-474303,-64226l206,562l11,383l300,553l-21,228l-425,898l-113,671l43,247l-92,566l-83,219l172,521l-74,807l-44,263l-403,715l-105,493l194,480l-32,247l-28,156l-36,568l-168,393l-602,624l-583,35l-618,443l-639,353l-832,-65l-401,438l9,375l-189,446l-517,211l-774,16l-544,-335l-1158,145l-401,215l-684,315l-353,74l-352,282l-1233,-255l-323,18l-416,-381l-75,-527l-375,-536l-523,283l-408,-119l-129,-329l-431,38l183,-248l864,-109l214,-252l324,-124l392,58l436,-131l724,218l480,138l463,-412l191,-612l494,-438l840,-227l565,-396l-30,-517l-311,-542l-583,-207l-451,28l-145,-170l-96,-525l78,-408l619,-857l-28,-251l-639,-223l-379,-344l50,-355l312,-103l105,-475l-365,-351l-668,-140l-406,-306l-42,-241l234,-799l-44,-173l414,-464l-70,-346l-650,284l-525,3l-404,-499l-666,-472l-189,-305l-76,-129l-308,-763l125,-723l-143,-242l-628,-251l-400,-414l-568,-240l-273,56l-607,-83l-498,-221l-552,-47l-187,-251l-458,-340l-319,-266l-566,-230l-376,-325l-79,-361l239,-792l-3,-891l74,-669l11,-385l-486,-937l-301,-353l-1140,-1322l-36,-727l206,-458l187,-409l1211,-1058l605,-298l106,-207l-172,-443l41,-649l-188,-557l64,-324l-11,-521l-165,-150l-278,-1273l-277,-516l-346,-1242l-661,-388l-421,-714l-81,-553l-103,-349l-416,-325l-303,-612l-616,-877l-490,-781l-920,-170l-833,-772l-260,-457l-489,-479l-88,-364l-112,-178l-428,-882l-615,-614l-300,-66l-58,-276l-351,-241l-177,-453l27,-380l-373,-589l-152,-438l157,-703l-178,-486l-304,-305l-122,-680l-491,-689l-257,-795l-407,-715l-124,-581l-247,-646l-372,-255l-380,-498l-205,-448l163,-566l-411,-1153l50,-272l-302,-370l-254,-133l-131,-571l42,-280l-342,-155l-29,-570l-217,-468l-218,-20l-401,-485l-2,-11l329,-916l-263,-522l-153,-56l-68,-538l182,-366l-318,-312l231,-1355l-550,-842l98,-634l-166,-717l-286,-264l-286,-695l-136,-777l32,-842l229,-345l459,-26l126,-112l-62,-847l-536,-499l-47,-123l310,-775l47,-418l470,-256l-287,-455l112,-367l-254,-241l-49,-447l195,-290l-138,-1523l491,-517l-166,-305l43,-468l177,-381l-68,-299l101,-414l-235,-302l-152,-468l-378,-628l-12,-484l174,-46l277,21l14,-332l318,-554l-24,-654l584,-434l539,-12l21,-163l268,520l87,376l-119,268l85,319l473,242l-32,307l174,345l478,651l381,226l260,431l518,301l479,171l640,498l-734,-866l-141,-496l359,-322l-514,-337l80,-266l-316,-276l-274,-590l-150,-809l252,-481l603,-203l401,-336l955,-146l1119,-324l690,-345l5405,-2972l289,189l-93,362l70,929l-134,170l190,441l330,344l225,585l292,399l137,466l270,59l220,274l710,604l131,-453l312,-197l-144,-356l555,-117l567,-545l958,1398l95,138l234,-58l72,-341l1034,-782l46,-632l143,-169l476,58l321,-213l101,-341l271,-78l246,-653l-127,-1306l-113,-332l198,-253l261,99l3,992l233,119l143,532l475,-196l-84,-193l151,-972l771,110l431,325l496,117l569,439l550,241l365,-5l-222,-368l-9,-433l135,-471l-166,-206l137,-76l771,226l166,496l296,-387l519,-99l150,-292l287,229l518,-297l619,86l254,-173l1185,-1392l556,921l-260,273l-84,538l188,307l-271,559l214,579l-9,300l292,169l484,-133l37,-634l244,-114l631,45l-105,-249l341,-396l367,-191l243,84l132,318l983,-341l290,521l274,191l702,-166l223,320l410,47l809,324l1165,869l393,-135l320,608l722,376l1152,-7l1808,-13l87,354l131,64l148,1070l204,-289l319,-122l-52,-1242l661,92l755,209l311,3l852,393l-544,-102l-541,-220l-432,105l-432,-20l172,412l-98,433l269,412l-369,205l281,316l143,477l-344,315l347,341l-393,139l313,423l59,435l716,468l1,1l-678,53l-45,671l-521,254l223,426l-449,-26l-251,187l212,484l-392,500l187,174l-229,611l213,709l-177,509l-330,202l580,377l276,365l886,351l-591,56l-737,467l75,347l354,192l0,191l-360,258l315,307l343,509l-201,103l-132,661l971,48l175,-309l714,-139l106,259l636,3l-319,180l-967,207l-410,486l-999,305l-889,-148l-844,574l-78,870l-284,50l-166,296l235,766l2114,3264l743,42l68,1228l341,291l203,-149l135,550l274,203l149,309l-105,322l332,388l668,204l1316,786l583,183l507,472l220,1329l713,107l276,539l-27,792l-215,240l-38,-480l-167,-366l-497,-277l-734,136l-296,-102l-189,-484l284,-278l-237,-306l-602,122l-288,622l-283,196l158,264l-159,738l-645,-330l-705,-37l-316,306l-160,133l-574,-115l-565,-20l-431,144l-161,487l-367,392l-245,35l-119,594l-202,282l116,527l-94,326l22,271l-400,799l-496,-132l-68,410l-268,224l-483,70l-89,469l402,276l300,802l439,255l-353,394l12,429l-521,114l-227,194l153,354l-332,197l-573,-45l-354,152l-405,424l-196,354l-283,110l280,350l-5,458l-328,255l-87,397l-692,404l182,233l-282,190l-356,-180l-314,-5l-504,292l194,524l174,129l96,411l410,321l-226,356l748,219l153,425l-22,390l-211,402l392,488l-295,381l141,621l562,523l-30,593l486,206l-21,480l257,377l502,-147l239,348l696,300l392,-89l500,98l363,478l160,770l-235,212l326,806l169,181l-107,580l-248,415l-485,221l-313,428l-241,116l-1180,-251l-835,-292l-225,-114l-542,-18l-580,-335l-222,-414l-513,-197l-310,60l-169,486l-371,195l-61,326l-337,266l-410,660l-599,457l-55,328l-712,766l-404,883l-256,163l-170,319l-296,207l-666,658l-64,423l-248,57l-332,-164l-308,97l117,214l869,428l148,391l-216,429l-431,285l-490,14l-351,-368l-237,-15l-333,569l-535,285l-76,544l344,248l503,-137l329,298l91,304l713,745l175,707l220,388l-129,667l-84,124l352,768l-25,541l-24,260l298,500l37,397l86,432l313,409l89,135l-140,613Z'
   };
 
-const NAME_TO_SIGLA={'Acre':'AC','Alagoas':'AL','Amapa':'AP','Amazonas':'AM','Bahia':'BA','Ceara':'CE','Distrito Federal':'DF','Espirito Santo':'ES','Goias':'GO','Maranhao':'MA','Mato Grosso':'MT','Mato Grosso do Sul':'MS','Minas Gerais':'MG','Para':'PA','Paraiba':'PB','Parana':'PR','Pernambuco':'PE','Piaui':'PI','Rio de Janeiro':'RJ','Rio Grande do Norte':'RN','Rio Grande do Sul':'RS','Rondonia':'RO','Roraima':'RR','Santa Catarina':'SC','Sao Paulo':'SP','Sergipe':'SE','Tocantins':'TO'};
+const NAME_TO_SIGLA={'Acre':'AC','Alagoas':'AL','Amapá':'AP','Amazonas':'AM','Bahia':'BA','Ceará':'CE','Distrito Federal':'DF','Espírito Santo':'ES','Goiás':'GO','Maranhão':'MA','Mato Grosso':'MT','Mato Grosso do Sul':'MS','Minas Gerais':'MG','Pará':'PA','Paraíba':'PB','Paraná':'PR','Pernambuco':'PE','Piauí':'PI','Rio de Janeiro':'RJ','Rio Grande do Norte':'RN','Rio Grande do Sul':'RS','Rondônia':'RO','Roraima':'RR','Santa Catarina':'SC','São Paulo':'SP','Sergipe':'SE','Tocantins':'TO'};
 const SIGLA_TO_NAME={};Object.entries(NAME_TO_SIGLA).forEach(([n,s])=>SIGLA_TO_NAME[s]=n);
 
 const DATA_PETSHOP={AC:165,AL:1247,AP:118,AM:921,BA:7029,CE:4159,DF:1511,ES:2606,GO:4697,MA:2105,MT:1255,MS:1163,MG:12160,PA:2043,PB:2114,PR:7729,PE:4550,PI:1380,RJ:11122,RN:1831,RS:7106,RO:629,RR:217,SC:4570,SP:33187,SE:887,TO:658};
 const DATA_VET={AC:72,AL:288,AP:35,AM:430,BA:1339,CE:998,DF:1071,ES:791,GO:1373,MA:370,MT:763,MS:702,MG:4969,PA:516,PB:460,PR:3873,PE:711,PI:232,RJ:3020,RN:435,RS:3824,RO:252,RR:68,SC:2389,SP:17114,SE:258,TO:221};
-const DATA_CRIADOURO={AC:1,AL:7,AP:0,AM:4,BA:13,CE:9,DF:4,ES:4,GO:12,MA:6,MT:4,MS:11,MG:51,PA:9,PB:4,PR:22,PE:2,PI:4,RJ:13,RN:4,RS:13,RO:0,RR:0,SC:6,SP:459,SE:0,TO:1};
+const DATA_OUTROS={AC:1,AL:7,AP:0,AM:4,BA:13,CE:9,DF:4,ES:4,GO:12,MA:6,MT:4,MS:11,MG:51,PA:9,PB:4,PR:22,PE:2,PI:4,RJ:13,RN:4,RS:13,RO:0,RR:0,SC:6,SP:459,SE:0,TO:1};
+const DATA_CRIADOR={AC:13,AL:50,AP:6,AM:35,BA:222,CE:153,DF:87,ES:152,GO:177,MA:61,MT:60,MS:47,MG:686,PA:63,PB:73,PR:339,PE:171,PI:51,RJ:704,RN:57,RS:353,RO:17,RR:8,SC:302,SP:1614,SE:30,TO:34};
+const DATA_RACAO={AC:9,AL:42,AP:8,AM:21,BA:262,CE:188,DF:33,ES:73,GO:462,MA:104,MT:339,MS:134,MG:638,PA:123,PB:76,PR:463,PE:142,PI:115,RJ:88,RN:36,RS:307,RO:83,RR:15,SC:259,SP:714,SE:32,TO:119};
+const DATA_ATACADISTA={AC:24,AL:57,AP:15,AM:53,BA:464,CE:180,DF:51,ES:117,GO:357,MA:128,MT:316,MS:126,MG:674,PA:258,PB:87,PR:784,PE:162,PI:153,RJ:289,RN:147,RS:517,RO:204,RR:26,SC:382,SP:1390,SE:121,TO:70};
+const EMP_PETSHOP={AC:125,AL:497,AP:155,AM:736,BA:3249,CE:2210,DF:1771,ES:1628,GO:2859,MA:697,MT:1406,MS:1039,MG:9114,PA:1347,PB:754,PR:5370,PE:2280,PI:666,RJ:7679,RN:969,RS:4594,RO:524,RR:173,SC:4198,SP:31627,SE:525,TO:444};
+const EMP_VET={AC:100,AL:365,AP:99,AM:319,BA:2024,CE:833,DF:890,ES:556,GO:1491,MA:559,MT:641,MS:818,MG:3997,PA:861,PB:320,PR:2543,PE:993,PI:214,RJ:3882,RN:428,RS:2086,RO:274,RR:125,SC:2045,SP:11930,SE:285,TO:181};
+const EMP_CRIADOR={AC:0,AL:12,AP:0,AM:1,BA:38,CE:11,DF:10,ES:13,GO:14,MA:21,MT:5,MS:5,MG:84,PA:3,PB:1,PR:17,PE:16,PI:6,RJ:55,RN:8,RS:19,RO:2,RR:1,SC:12,SP:163,SE:7,TO:3};
+const EMP_OUTROS={AC:5,AL:88,AP:1,AM:6,BA:309,CE:27,DF:11,ES:14,GO:238,MA:41,MT:183,MS:53,MG:596,PA:69,PB:46,PR:315,PE:156,PI:3,RJ:138,RN:33,RS:205,RO:86,RR:3,SC:58,SP:1659,SE:42,TO:23};
+const EMP_RACAO={AC:105,AL:229,AP:8,AM:202,BA:1971,CE:2699,DF:701,ES:1779,GO:4682,MA:1281,MT:3593,MS:2039,MG:11407,PA:918,PB:509,PR:12280,PE:3031,PI:706,RJ:725,RN:197,RS:6768,RO:1432,RR:92,SC:5268,SP:19239,SE:135,TO:1188};
+const EMP_ATACADISTA={AC:38,AL:136,AP:25,AM:138,BA:1085,CE:284,DF:234,ES:413,GO:723,MA:306,MT:462,MS:206,MG:1864,PA:537,PB:247,PR:1536,PE:331,PI:235,RJ:1460,RN:336,RS:1162,RO:363,RR:35,SC:912,SP:6344,SE:359,TO:95};
 
 function fmtNum(n){return n.toLocaleString('pt-BR')}
 
@@ -582,7 +610,7 @@ function initCharts(){
   const gridColor=isDark()?'rgba(139,157,195,.12)':'rgba(0,0,0,.06)';
   const textColor=isDark()?'#8b9dc3':'#6b7280';
 
-  const ufTotals=Object.keys(DATA_PETSHOP).map(s=>({sigla:s,total:(DATA_PETSHOP[s]||0)+(DATA_VET[s]||0)+(DATA_CRIADOURO[s]||0)}));
+  const ufTotals=Object.keys(DATA_PETSHOP).map(s=>({sigla:s,total:(DATA_PETSHOP[s]||0)+(DATA_VET[s]||0)+(DATA_CRIADOR[s]||0)+(DATA_OUTROS[s]||0)+(DATA_RACAO[s]||0)+(DATA_ATACADISTA[s]||0)}));
   ufTotals.sort((a,b)=>b.total-a.total);
   const top10=ufTotals.slice(0,10);
 
@@ -593,7 +621,8 @@ function initCharts(){
       datasets:[
         {label:'Pet Shops',data:top10.map(u=>DATA_PETSHOP[u.sigla]||0),backgroundColor:isDark()?'#65b7fb':'#2a4fda',borderRadius:4},
         {label:'Veterinarias',data:top10.map(u=>DATA_VET[u.sigla]||0),backgroundColor:'#61b466',borderRadius:4},
-        {label:'Criadouros',data:top10.map(u=>DATA_CRIADOURO[u.sigla]||0),backgroundColor:'#be64e3',borderRadius:4}
+        {label:'Criadores',data:top10.map(u=>(DATA_CRIADOR[u.sigla]||0)+(DATA_OUTROS[u.sigla]||0)),backgroundColor:'#be64e3',borderRadius:4},
+        {label:'Racao/Atacado',data:top10.map(u=>(DATA_RACAO[u.sigla]||0)+(DATA_ATACADISTA[u.sigla]||0)),backgroundColor:'#f39d72',borderRadius:4}
       ]
     },
     options:{
@@ -609,8 +638,8 @@ function initCharts(){
   charts.segmento=new Chart(document.getElementById('chartSegmento'),{
     type:'doughnut',
     data:{
-      labels:['Pet Shops (71,3%)','Veterinarias (28,3%)','Criadouros (0,4%)'],
-      datasets:[{data:[117165,46580,665],backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#61b466','#be64e3'],borderWidth:0}]
+      labels:['Pet Shops (64,4%)','Veterinarias (25,6%)','Criadores (3,4%)','Atacadista (3,9%)','Fab. Racao (2,7%)'],
+      datasets:[{data:[117165,46580,6230,7165,4912],backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#61b466','#be64e3','#f39d72','#65b7fb'],borderWidth:0}]
     },
     options:{
       responsive:true,maintainAspectRatio:false,cutout:'60%',
@@ -621,8 +650,8 @@ function initCharts(){
   charts.porte=new Chart(document.getElementById('chartPorte'),{
     type:'doughnut',
     data:{
-      labels:['MEI (37,5%)','ME (47,6%)','EPP (6,6%)','Outros (8,3%)'],
-      datasets:[{data:[61624,78254,10831,13701],backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#61b466','#f39d72','#8b9dc3'],borderWidth:0}]
+      labels:['MEI (36,4%)','ME (52,8%)','EPP (7,5%)','Outros (3,3%)'],
+      datasets:[{data:[66242,96081,13626,6103],backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#61b466','#f39d72','#8b9dc3'],borderWidth:0}]
     },
     options:{
       responsive:true,maintainAspectRatio:false,cutout:'60%',
@@ -630,14 +659,52 @@ function initCharts(){
     }
   });
 
+  charts.emprego=new Chart(document.getElementById('chartEmprego'),{
+    type:'doughnut',
+    data:{
+      labels:['Pet Shops (37,1%)','Fab. Racao (35,6%)','Veterinarias (16,6%)','Atacadista (8,5%)','Criacao (2,1%)'],
+      datasets:[{data:[86636,83184,38859,19866,4937],backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#f39d72','#61b466','#65b7fb','#be64e3'],borderWidth:0}]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,cutout:'60%',
+      plugins:{legend:{position:'bottom',labels:{color:textColor,usePointStyle:true,pointStyle:'circle',padding:12,font:{size:11}}}}
+    }
+  });
+
+  const empTotals=Object.keys(EMP_PETSHOP).map(s=>({sigla:s,total:(EMP_PETSHOP[s]||0)+(EMP_VET[s]||0)+(EMP_CRIADOR[s]||0)+(EMP_OUTROS[s]||0)+(EMP_RACAO[s]||0)+(EMP_ATACADISTA[s]||0)}));
+  empTotals.sort((a,b)=>b.total-a.total);
+  const top10emp=empTotals.slice(0,10);
+
+  charts.top10emp=new Chart(document.getElementById('chartTop10Emp'),{
+    type:'bar',
+    data:{
+      labels:top10emp.map(u=>u.sigla),
+      datasets:[
+        {label:'Pet Shops',data:top10emp.map(u=>EMP_PETSHOP[u.sigla]||0),backgroundColor:isDark()?'#65b7fb':'#2a4fda',borderRadius:4},
+        {label:'Fab. Racao',data:top10emp.map(u=>EMP_RACAO[u.sigla]||0),backgroundColor:'#f39d72',borderRadius:4},
+        {label:'Veterinarias',data:top10emp.map(u=>EMP_VET[u.sigla]||0),backgroundColor:'#61b466',borderRadius:4},
+        {label:'Atacadista',data:top10emp.map(u=>EMP_ATACADISTA[u.sigla]||0),backgroundColor:'#65b7fb',borderRadius:4},
+        {label:'Criacao',data:top10emp.map(u=>(EMP_CRIADOR[u.sigla]||0)+(EMP_OUTROS[u.sigla]||0)),backgroundColor:'#be64e3',borderRadius:4}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{color:textColor,usePointStyle:true,pointStyle:'circle',padding:12,font:{size:11}}}},
+      scales:{
+        x:{grid:{display:false},ticks:{color:textColor,font:{size:11}},stacked:true},
+        y:{grid:{color:gridColor},ticks:{color:textColor,callback:v=>v>=1000?(v/1000)+'k':v},stacked:true}
+      }
+    }
+  });
+
   charts.impacto=new Chart(document.getElementById('chartImpacto'),{
     type:'bar',
     data:{
-      labels:['Pet Shops / Revendedores','Clinicas Veterinarias','Criadouros Comerciais'],
+      labels:['Pet Shops','Veterinarias','Criadores Estimacao','Atacadista Racao','Fab. Racao','Outros Animais'],
       datasets:[{
         label:'Estabelecimentos',
-        data:[117165,46580,665],
-        backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#61b466','#be64e3'],
+        data:[117165,46580,5565,7165,4912,665],
+        backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#61b466','#be64e3','#f39d72','#65b7fb','#8b9dc3'],
         borderRadius:4
       }]
     },
@@ -646,7 +713,7 @@ function initCharts(){
       plugins:{legend:{display:false}},
       scales:{
         x:{grid:{color:gridColor},ticks:{color:textColor,callback:v=>v>=1000?(v/1000)+'k':v}},
-        y:{grid:{display:false},ticks:{color:textColor,font:{size:12,weight:'600'}}}
+        y:{grid:{display:false},ticks:{color:textColor,font:{size:11,weight:'600'}}}
       }
     }
   });
@@ -681,8 +748,12 @@ function renderMapa(){
     let v=0;
     if(mode==='petshop')v=DATA_PETSHOP[sigla]||0;
     else if(mode==='vet')v=DATA_VET[sigla]||0;
-    else if(mode==='criadouro')v=DATA_CRIADOURO[sigla]||0;
-    else v=(DATA_PETSHOP[sigla]||0)+(DATA_VET[sigla]||0)+(DATA_CRIADOURO[sigla]||0);
+    else if(mode==='criador')v=DATA_CRIADOR[sigla]||0;
+    else if(mode==='outros')v=DATA_OUTROS[sigla]||0;
+    else if(mode==='racao')v=DATA_RACAO[sigla]||0;
+    else if(mode==='atacadista')v=DATA_ATACADISTA[sigla]||0;
+    else if(mode==='emprego')v=(EMP_PETSHOP[sigla]||0)+(EMP_VET[sigla]||0)+(EMP_CRIADOR[sigla]||0)+(EMP_OUTROS[sigla]||0)+(EMP_RACAO[sigla]||0)+(EMP_ATACADISTA[sigla]||0);
+    else v=(DATA_PETSHOP[sigla]||0)+(DATA_VET[sigla]||0)+(DATA_CRIADOR[sigla]||0)+(DATA_OUTROS[sigla]||0)+(DATA_RACAO[sigla]||0)+(DATA_ATACADISTA[sigla]||0);
     valoresPorNome[nome]=v;
     if(v>maxVal)maxVal=v;
   });
@@ -718,8 +789,9 @@ function renderMapa(){
     if(target!==activePath){resetPath(activePath);activePath=target;target.setAttribute('stroke',dark?'#fff':'#1a1a1a');target.setAttribute('stroke-width','2.5');target.style.filter='brightness(1.25)';target.parentNode.appendChild(target)}
     const sigla=target.getAttribute('data-uf');
     const nome=target.getAttribute('data-nome');
-    const ps=DATA_PETSHOP[sigla]||0;const vt=DATA_VET[sigla]||0;const cr=DATA_CRIADOURO[sigla]||0;
-    mapTooltipEl.innerHTML='<strong>'+nome+' ('+sigla+')</strong><br>Pet Shops: '+fmtNum(ps)+'<br>Veterinarias: '+fmtNum(vt)+'<br>Criadouros: '+fmtNum(cr)+'<br><strong>Total: '+fmtNum(ps+vt+cr)+'</strong>';
+    const ps=DATA_PETSHOP[sigla]||0;const vt=DATA_VET[sigla]||0;const cr=DATA_CRIADOR[sigla]||0;const ot=DATA_OUTROS[sigla]||0;const rc=DATA_RACAO[sigla]||0;const at=DATA_ATACADISTA[sigla]||0;
+    const ep=(EMP_PETSHOP[sigla]||0)+(EMP_VET[sigla]||0)+(EMP_CRIADOR[sigla]||0)+(EMP_OUTROS[sigla]||0)+(EMP_RACAO[sigla]||0)+(EMP_ATACADISTA[sigla]||0);
+    mapTooltipEl.innerHTML='<strong>'+nome+' ('+sigla+')</strong><br>Pet Shops: '+fmtNum(ps)+'<br>Veterinarias: '+fmtNum(vt)+'<br>Criadores: '+fmtNum(cr+ot)+'<br>Fab. Racao: '+fmtNum(rc)+'<br>Atacadista: '+fmtNum(at)+'<br><strong>Total: '+fmtNum(ps+vt+cr+ot+rc+at)+'</strong><br><em>Empregos: '+fmtNum(ep)+'</em>';
     mapTooltipEl.style.display='block';
     let tx=ev.clientX+14;let ty=ev.clientY-60;
     if(tx+240>window.innerWidth)tx=ev.clientX-250;
@@ -736,9 +808,11 @@ function exportWhatsApp(){
   let txt='*PIPPA Regulacao PET — Analise de Impacto Regulatorio*\n';
   txt+='_Fauna Silvestre | SEBRAE Nacional — UPP_\n\n';
   txt+='*Cadeia PET Silvestre no Brasil*\n';
-  txt+='Total: 164.410 estabelecimentos\n';
-  txt+='Pet Shops: 117.165 | Veterinarias: 46.580 | Criadouros: 665\n';
-  txt+='96,2% sao MPEs (MEI + ME + EPP)\n\n';
+  txt+='Total: 182.052 estabelecimentos (6 CNAEs)\n';
+  txt+='Pet Shops: 117.165 | Veterinarias: 46.580\n';
+  txt+='Criadores: 6.230 | Fab. Racao: 4.912 | Atacadista: 7.165\n';
+  txt+='Empregos formais (RAIS 2025): 233.482\n';
+  txt+='96,6% sao MPEs (MEI + ME + EPP)\n\n';
   txt+='*IN IBAMA — Lista de Especies Silvestres*\n';
   txt+='52 especies autorizadas (51 aves + 1 reptil)\n';
   txt+='Prazos: 90 dias (cessar reproducao) | 180 dias (alienar especimes)\n\n';
@@ -746,7 +820,7 @@ function exportWhatsApp(){
   txt+='Criadouros: ALTO | Pet Shops: ALTO\n';
   txt+='Insumos Pet: MEDIO | Veterinarias: POSITIVO\n\n';
   txt+='Consulta Publica: brasilparticipativo.presidencia.gov.br/processes/listaestimacao/f/6223/\n\n';
-  txt+='_Fonte: Receita Federal (Observatorio Sebrae) | IBAMA 2026_';
+  txt+='_Fonte: Receita Federal + RAIS 2025 (Observatorio Sebrae) | IBAMA 2026_';
   const url='https://wa.me/?text='+encodeURIComponent(txt);
   window.open(url,'_blank');
 }
