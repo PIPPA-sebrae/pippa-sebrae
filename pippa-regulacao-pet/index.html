@@ -197,7 +197,10 @@ main{flex:1}
       <li>0159-8/99 — Criacao de outros animais nao especificados anteriormente</li>
       <li>1066-0/00 — Fabricacao de alimentos para animais</li>
       <li>4623-1/09 — Comercio atacadista de racoes e alimentos para animais</li>
+      <li>0155-5/04 — Criacao de aves, exceto galinaceos</li>
     </ul>
+    <h3>Nota Metodologica</h3>
+    <p>Os quantitativos apresentados representam o <strong>universo economico de referencia</strong> dos CNAEs selecionados, nao o numero de estabelecimentos diretamente sujeitos a regulamentacao. A IN IBAMA abrange exclusivamente a criacao comercial de especies silvestres nativas para fins de estimacao. Para dimensionar o impacto direto, seria necessario cruzar com a base SisFauna (Ibama) e filtrar por finalidade comercial de estimacao. A consulta publica encerra em 14/12/2026.</p>
     <div class="info-footer">
       PIPPA — Plataforma de Inteligencia em Politicas Publicas Aplicadas<br>
       SEBRAE Nacional — Unidade de Politicas Publicas
@@ -217,17 +220,17 @@ main{flex:1}
 <!-- TAB 1: PANORAMA -->
 <div id="tab-panorama" class="tab-content active">
   <div class="kpi-bar">
-    <div class="kpi-card"><div class="kpi-label">Estabelecimentos na Cadeia PET</div><div class="kpi-value kpi-accent">182.052</div><div class="kpi-detail">6 CNAEs combinados</div></div>
-    <div class="kpi-card"><div class="kpi-label">Empregos Formais (RAIS 2025)</div><div class="kpi-value kpi-cyan">233.482</div><div class="kpi-detail">Cadeia PET completa</div></div>
+    <div class="kpi-card"><div class="kpi-label">Universo Economico PET</div><div class="kpi-value kpi-accent">182.721</div><div class="kpi-detail">7 CNAEs — universo economico de referencia</div></div>
+    <div class="kpi-card"><div class="kpi-label">Empregos Formais (RAIS 2025)</div><div class="kpi-value kpi-cyan">238.287</div><div class="kpi-detail">Universo economico PET</div></div>
     <div class="kpi-card"><div class="kpi-label">Pet Shops</div><div class="kpi-value" style="color:var(--accent)">117.165</div><div class="kpi-detail">86.636 empregos | CNAE 4789-0/04</div></div>
     <div class="kpi-card"><div class="kpi-label">Clinicas Veterinarias</div><div class="kpi-value kpi-green">46.580</div><div class="kpi-detail">38.859 empregos | CNAE 7500-1/00</div></div>
     <div class="kpi-card"><div class="kpi-label">Criadores de Estimacao</div><div class="kpi-value kpi-purple">5.565</div><div class="kpi-detail">528 empregos | CNAE 0159-8/02</div></div>
-    <div class="kpi-card"><div class="kpi-label">MPEs (MEI+ME+EPP)</div><div class="kpi-value kpi-orange">96,6%</div><div class="kpi-detail">175.949 de 182.052</div></div>
+    <div class="kpi-card"><div class="kpi-label">MPEs (MEI+ME+EPP)</div><div class="kpi-value kpi-orange">96,5%</div><div class="kpi-detail">176.240 de 182.721</div></div>
   </div>
 
   <div class="card-grid">
     <div class="card">
-      <h4>Top 10 Estados — Estabelecimentos Cadeia PET</h4>
+      <h4>Top 10 Estados — Universo Economico PET</h4>
       <div class="chart-container"><canvas id="chartTop10UF"></canvas></div>
     </div>
     <div class="card">
@@ -238,7 +241,7 @@ main{flex:1}
 
   <div class="card-grid">
     <div class="card">
-      <h4>Perfil por Porte — Cadeia PET</h4>
+      <h4>Perfil por Porte — Universo Economico PET</h4>
       <div class="chart-container-sm"><canvas id="chartPorte"></canvas></div>
     </div>
     <div class="card">
@@ -252,11 +255,12 @@ main{flex:1}
       <h4>
         Mapa por UF
         <select id="selMapCnae" class="select-input" style="margin-left:auto" onchange="renderMapa()">
-          <option value="total">Total (6 CNAEs)</option>
+          <option value="total">Total (7 CNAEs)</option>
           <option value="petshop">Pet Shops</option>
           <option value="vet">Veterinarias</option>
           <option value="criador">Criadores de Estimacao</option>
           <option value="outros">Criacao Outros Animais</option>
+          <option value="aves">Criacao de Aves</option>
           <option value="racao">Fabricacao de Racao</option>
           <option value="atacadista">Atacadista Racao</option>
           <option value="emprego">Empregos Formais</option>
@@ -277,7 +281,7 @@ main{flex:1}
     <div class="meta-item"><div class="meta-label">Orgao</div><div class="meta-value">IBAMA</div></div>
     <div class="meta-item"><div class="meta-label">Instrumento</div><div class="meta-value">Instrucao Normativa</div></div>
     <div class="meta-item"><div class="meta-label">Base Legal</div><div class="meta-value">Res. CONAMA 394/2007</div></div>
-    <div class="meta-item"><div class="meta-label">Especies Autorizadas</div><div class="meta-value">52</div></div>
+    <div class="meta-item"><div class="meta-label">Especies Propostas</div><div class="meta-value">52</div></div>
     <div class="meta-item"><div class="meta-label">Status</div><div class="meta-value" style="color:var(--green)">Consulta Publica</div></div>
   </div>
 
@@ -391,7 +395,7 @@ main{flex:1}
         <h5>Criadouros Comerciais</h5>
         <span class="impact-badge impact-alto">Impacto Alto</span>
       </div>
-      <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">6.230 estabelecimentos (5.565 criadores de estimacao + 665 criadores outros) | RAIS: 4.937 empregos</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">6.899 estabelecimentos (5.565 criadores de estimacao + 665 outros animais + 669 criadores de aves) | RAIS: 9.742 empregos</div>
       <ul class="impact-list">
         <li>Restricao a apenas 52 especies no Anexo I — criadores com especies fora da lista precisam encerrar linhas de producao</li>
         <li>Prazos curtos: 90 dias para cessar reproducao, 180 dias para alienar especimes</li>
@@ -497,7 +501,7 @@ main{flex:1}
     <h4>Modelo de Posicionamento Institucional</h4>
     <div class="position-box">
       <h5>Posicionamento do SEBRAE sobre a IN IBAMA — Lista de Especies Silvestres para Estimacao</h5>
-      <p>O SEBRAE reconhece a importancia da regulamentacao do mercado de animais silvestres como instrumento de conservacao da biodiversidade e combate ao trafico. Contudo, manifesta preocupacao com os impactos da presente minuta sobre os <strong>182 mil estabelecimentos</strong> e <strong>233 mil empregos formais</strong> da cadeia PET no Brasil, dos quais <strong>96,6% sao micro e pequenas empresas</strong>.</p>
+      <p>O SEBRAE reconhece a importancia da regulamentacao do mercado de animais silvestres como instrumento de conservacao da biodiversidade e combate ao trafico. Contudo, manifesta preocupacao com os impactos da presente minuta sobre os <strong>182 mil estabelecimentos</strong> e <strong>238 mil empregos formais</strong> do universo economico PET no Brasil, dos quais <strong>96,5% sao micro e pequenas empresas</strong>.</p>
       <p style="margin-top:8px">Solicitamos que a versao final da IN considere: (i) a ampliacao dos prazos de transicao proporcionais ao porte do empreendimento; (ii) a simplificacao dos processos burocraticos para MEI e ME; (iii) a criacao de programa de capacitacao em parceria IBAMA-SEBRAE; e (iv) mecanismos de credito para adequacao de infraestrutura.</p>
       <p style="margin-top:8px">O SEBRAE coloca-se a disposicao para colaborar na construcao de solucoes que conciliem conservacao ambiental com a sustentabilidade economica dos pequenos negocios.</p>
     </div>
@@ -566,6 +570,8 @@ const EMP_CRIADOR={AC:0,AL:12,AP:0,AM:1,BA:38,CE:11,DF:10,ES:13,GO:14,MA:21,MT:5
 const EMP_OUTROS={AC:5,AL:88,AP:1,AM:6,BA:309,CE:27,DF:11,ES:14,GO:238,MA:41,MT:183,MS:53,MG:596,PA:69,PB:46,PR:315,PE:156,PI:3,RJ:138,RN:33,RS:205,RO:86,RR:3,SC:58,SP:1659,SE:42,TO:23};
 const EMP_RACAO={AC:105,AL:229,AP:8,AM:202,BA:1971,CE:2699,DF:701,ES:1779,GO:4682,MA:1281,MT:3593,MS:2039,MG:11407,PA:918,PB:509,PR:12280,PE:3031,PI:706,RJ:725,RN:197,RS:6768,RO:1432,RR:92,SC:5268,SP:19239,SE:135,TO:1188};
 const EMP_ATACADISTA={AC:38,AL:136,AP:25,AM:138,BA:1085,CE:284,DF:234,ES:413,GO:723,MA:306,MT:462,MS:206,MG:1864,PA:537,PB:247,PR:1536,PE:331,PI:235,RJ:1460,RN:336,RS:1162,RO:363,RR:35,SC:912,SP:6344,SE:359,TO:95};
+const DATA_AVES={AC:1,AL:11,AP:1,AM:0,BA:13,CE:22,DF:10,ES:10,GO:14,MA:4,MT:9,MS:3,MG:34,PA:6,PB:10,PR:11,PE:9,PI:5,RJ:16,RN:2,RS:25,RO:0,RR:0,SC:8,SP:439,SE:6,TO:0};
+const EMP_AVES={AC:0,AL:15,AP:0,AM:0,BA:237,CE:199,DF:61,ES:24,GO:334,MA:58,MT:152,MS:14,MG:617,PA:126,PB:247,PR:575,PE:377,PI:10,RJ:41,RN:15,RS:728,RO:64,RR:0,SC:168,SP:724,SE:11,TO:8};
 
 function fmtNum(n){return n.toLocaleString('pt-BR')}
 
@@ -610,7 +616,7 @@ function initCharts(){
   const gridColor=isDark()?'rgba(139,157,195,.12)':'rgba(0,0,0,.06)';
   const textColor=isDark()?'#8b9dc3':'#6b7280';
 
-  const ufTotals=Object.keys(DATA_PETSHOP).map(s=>({sigla:s,total:(DATA_PETSHOP[s]||0)+(DATA_VET[s]||0)+(DATA_CRIADOR[s]||0)+(DATA_OUTROS[s]||0)+(DATA_RACAO[s]||0)+(DATA_ATACADISTA[s]||0)}));
+  const ufTotals=Object.keys(DATA_PETSHOP).map(s=>({sigla:s,total:(DATA_PETSHOP[s]||0)+(DATA_VET[s]||0)+(DATA_CRIADOR[s]||0)+(DATA_OUTROS[s]||0)+(DATA_RACAO[s]||0)+(DATA_ATACADISTA[s]||0)+(DATA_AVES[s]||0)}));
   ufTotals.sort((a,b)=>b.total-a.total);
   const top10=ufTotals.slice(0,10);
 
@@ -621,7 +627,7 @@ function initCharts(){
       datasets:[
         {label:'Pet Shops',data:top10.map(u=>DATA_PETSHOP[u.sigla]||0),backgroundColor:isDark()?'#65b7fb':'#2a4fda',borderRadius:4},
         {label:'Veterinarias',data:top10.map(u=>DATA_VET[u.sigla]||0),backgroundColor:'#61b466',borderRadius:4},
-        {label:'Criadores',data:top10.map(u=>(DATA_CRIADOR[u.sigla]||0)+(DATA_OUTROS[u.sigla]||0)),backgroundColor:'#be64e3',borderRadius:4},
+        {label:'Criadores/Aves',data:top10.map(u=>(DATA_CRIADOR[u.sigla]||0)+(DATA_OUTROS[u.sigla]||0)+(DATA_AVES[u.sigla]||0)),backgroundColor:'#be64e3',borderRadius:4},
         {label:'Racao/Atacado',data:top10.map(u=>(DATA_RACAO[u.sigla]||0)+(DATA_ATACADISTA[u.sigla]||0)),backgroundColor:'#f39d72',borderRadius:4}
       ]
     },
@@ -638,8 +644,8 @@ function initCharts(){
   charts.segmento=new Chart(document.getElementById('chartSegmento'),{
     type:'doughnut',
     data:{
-      labels:['Pet Shops (64,4%)','Veterinarias (25,6%)','Criadores (3,4%)','Atacadista (3,9%)','Fab. Racao (2,7%)'],
-      datasets:[{data:[117165,46580,6230,7165,4912],backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#61b466','#be64e3','#f39d72','#65b7fb'],borderWidth:0}]
+      labels:['Pet Shops (64,1%)','Veterinarias (25,5%)','Criadores (3,4%)','Atacadista (3,9%)','Fab. Racao (2,7%)','Criacao Aves (0,4%)'],
+      datasets:[{data:[117165,46580,6230,7165,4912,669],backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#61b466','#be64e3','#f39d72','#65b7fb','#e0565d'],borderWidth:0}]
     },
     options:{
       responsive:true,maintainAspectRatio:false,cutout:'60%',
@@ -650,8 +656,8 @@ function initCharts(){
   charts.porte=new Chart(document.getElementById('chartPorte'),{
     type:'doughnut',
     data:{
-      labels:['MEI (36,4%)','ME (52,8%)','EPP (7,5%)','Outros (3,3%)'],
-      datasets:[{data:[66242,96081,13626,6103],backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#61b466','#f39d72','#8b9dc3'],borderWidth:0}]
+      labels:['MEI (36,3%)','ME (52,7%)','EPP (7,5%)','Outros (3,5%)'],
+      datasets:[{data:[66249,96335,13656,6481],backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#61b466','#f39d72','#8b9dc3'],borderWidth:0}]
     },
     options:{
       responsive:true,maintainAspectRatio:false,cutout:'60%',
@@ -662,8 +668,8 @@ function initCharts(){
   charts.emprego=new Chart(document.getElementById('chartEmprego'),{
     type:'doughnut',
     data:{
-      labels:['Pet Shops (37,1%)','Fab. Racao (35,6%)','Veterinarias (16,6%)','Atacadista (8,5%)','Criacao (2,1%)'],
-      datasets:[{data:[86636,83184,38859,19866,4937],backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#f39d72','#61b466','#65b7fb','#be64e3'],borderWidth:0}]
+      labels:['Pet Shops (36,4%)','Fab. Racao (34,9%)','Veterinarias (16,3%)','Atacadista (8,3%)','Criacao Aves (2,0%)','Criacao (2,1%)'],
+      datasets:[{data:[86636,83184,38859,19866,4805,4937],backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#f39d72','#61b466','#65b7fb','#e0565d','#be64e3'],borderWidth:0}]
     },
     options:{
       responsive:true,maintainAspectRatio:false,cutout:'60%',
@@ -671,7 +677,7 @@ function initCharts(){
     }
   });
 
-  const empTotals=Object.keys(EMP_PETSHOP).map(s=>({sigla:s,total:(EMP_PETSHOP[s]||0)+(EMP_VET[s]||0)+(EMP_CRIADOR[s]||0)+(EMP_OUTROS[s]||0)+(EMP_RACAO[s]||0)+(EMP_ATACADISTA[s]||0)}));
+  const empTotals=Object.keys(EMP_PETSHOP).map(s=>({sigla:s,total:(EMP_PETSHOP[s]||0)+(EMP_VET[s]||0)+(EMP_CRIADOR[s]||0)+(EMP_OUTROS[s]||0)+(EMP_RACAO[s]||0)+(EMP_ATACADISTA[s]||0)+(EMP_AVES[s]||0)}));
   empTotals.sort((a,b)=>b.total-a.total);
   const top10emp=empTotals.slice(0,10);
 
@@ -684,7 +690,7 @@ function initCharts(){
         {label:'Fab. Racao',data:top10emp.map(u=>EMP_RACAO[u.sigla]||0),backgroundColor:'#f39d72',borderRadius:4},
         {label:'Veterinarias',data:top10emp.map(u=>EMP_VET[u.sigla]||0),backgroundColor:'#61b466',borderRadius:4},
         {label:'Atacadista',data:top10emp.map(u=>EMP_ATACADISTA[u.sigla]||0),backgroundColor:'#65b7fb',borderRadius:4},
-        {label:'Criacao',data:top10emp.map(u=>(EMP_CRIADOR[u.sigla]||0)+(EMP_OUTROS[u.sigla]||0)),backgroundColor:'#be64e3',borderRadius:4}
+        {label:'Criacao/Aves',data:top10emp.map(u=>(EMP_CRIADOR[u.sigla]||0)+(EMP_OUTROS[u.sigla]||0)+(EMP_AVES[u.sigla]||0)),backgroundColor:'#be64e3',borderRadius:4}
       ]
     },
     options:{
@@ -700,11 +706,11 @@ function initCharts(){
   charts.impacto=new Chart(document.getElementById('chartImpacto'),{
     type:'bar',
     data:{
-      labels:['Pet Shops','Veterinarias','Criadores Estimacao','Atacadista Racao','Fab. Racao','Outros Animais'],
+      labels:['Pet Shops','Veterinarias','Criadores Estimacao','Atacadista Racao','Fab. Racao','Criacao Aves','Outros Animais'],
       datasets:[{
         label:'Estabelecimentos',
-        data:[117165,46580,5565,7165,4912,665],
-        backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#61b466','#be64e3','#f39d72','#65b7fb','#8b9dc3'],
+        data:[117165,46580,5565,7165,4912,669,665],
+        backgroundColor:[isDark()?'#65b7fb':'#2a4fda','#61b466','#be64e3','#f39d72','#65b7fb','#e0565d','#8b9dc3'],
         borderRadius:4
       }]
     },
@@ -752,8 +758,9 @@ function renderMapa(){
     else if(mode==='outros')v=DATA_OUTROS[sigla]||0;
     else if(mode==='racao')v=DATA_RACAO[sigla]||0;
     else if(mode==='atacadista')v=DATA_ATACADISTA[sigla]||0;
-    else if(mode==='emprego')v=(EMP_PETSHOP[sigla]||0)+(EMP_VET[sigla]||0)+(EMP_CRIADOR[sigla]||0)+(EMP_OUTROS[sigla]||0)+(EMP_RACAO[sigla]||0)+(EMP_ATACADISTA[sigla]||0);
-    else v=(DATA_PETSHOP[sigla]||0)+(DATA_VET[sigla]||0)+(DATA_CRIADOR[sigla]||0)+(DATA_OUTROS[sigla]||0)+(DATA_RACAO[sigla]||0)+(DATA_ATACADISTA[sigla]||0);
+    else if(mode==='aves')v=DATA_AVES[sigla]||0;
+    else if(mode==='emprego')v=(EMP_PETSHOP[sigla]||0)+(EMP_VET[sigla]||0)+(EMP_CRIADOR[sigla]||0)+(EMP_OUTROS[sigla]||0)+(EMP_RACAO[sigla]||0)+(EMP_ATACADISTA[sigla]||0)+(EMP_AVES[sigla]||0);
+    else v=(DATA_PETSHOP[sigla]||0)+(DATA_VET[sigla]||0)+(DATA_CRIADOR[sigla]||0)+(DATA_OUTROS[sigla]||0)+(DATA_RACAO[sigla]||0)+(DATA_ATACADISTA[sigla]||0)+(DATA_AVES[sigla]||0);
     valoresPorNome[nome]=v;
     if(v>maxVal)maxVal=v;
   });
@@ -789,9 +796,9 @@ function renderMapa(){
     if(target!==activePath){resetPath(activePath);activePath=target;target.setAttribute('stroke',dark?'#fff':'#1a1a1a');target.setAttribute('stroke-width','2.5');target.style.filter='brightness(1.25)';target.parentNode.appendChild(target)}
     const sigla=target.getAttribute('data-uf');
     const nome=target.getAttribute('data-nome');
-    const ps=DATA_PETSHOP[sigla]||0;const vt=DATA_VET[sigla]||0;const cr=DATA_CRIADOR[sigla]||0;const ot=DATA_OUTROS[sigla]||0;const rc=DATA_RACAO[sigla]||0;const at=DATA_ATACADISTA[sigla]||0;
-    const ep=(EMP_PETSHOP[sigla]||0)+(EMP_VET[sigla]||0)+(EMP_CRIADOR[sigla]||0)+(EMP_OUTROS[sigla]||0)+(EMP_RACAO[sigla]||0)+(EMP_ATACADISTA[sigla]||0);
-    mapTooltipEl.innerHTML='<strong>'+nome+' ('+sigla+')</strong><br>Pet Shops: '+fmtNum(ps)+'<br>Veterinarias: '+fmtNum(vt)+'<br>Criadores: '+fmtNum(cr+ot)+'<br>Fab. Racao: '+fmtNum(rc)+'<br>Atacadista: '+fmtNum(at)+'<br><strong>Total: '+fmtNum(ps+vt+cr+ot+rc+at)+'</strong><br><em>Empregos: '+fmtNum(ep)+'</em>';
+    const ps=DATA_PETSHOP[sigla]||0;const vt=DATA_VET[sigla]||0;const cr=DATA_CRIADOR[sigla]||0;const ot=DATA_OUTROS[sigla]||0;const rc=DATA_RACAO[sigla]||0;const at=DATA_ATACADISTA[sigla]||0;const av=DATA_AVES[sigla]||0;
+    const ep=(EMP_PETSHOP[sigla]||0)+(EMP_VET[sigla]||0)+(EMP_CRIADOR[sigla]||0)+(EMP_OUTROS[sigla]||0)+(EMP_RACAO[sigla]||0)+(EMP_ATACADISTA[sigla]||0)+(EMP_AVES[sigla]||0);
+    mapTooltipEl.innerHTML='<strong>'+nome+' ('+sigla+')</strong><br>Pet Shops: '+fmtNum(ps)+'<br>Veterinarias: '+fmtNum(vt)+'<br>Criadores: '+fmtNum(cr+ot)+'<br>Criacao Aves: '+fmtNum(av)+'<br>Fab. Racao: '+fmtNum(rc)+'<br>Atacadista: '+fmtNum(at)+'<br><strong>Total: '+fmtNum(ps+vt+cr+ot+rc+at+av)+'</strong><br><em>Empregos: '+fmtNum(ep)+'</em>';
     mapTooltipEl.style.display='block';
     let tx=ev.clientX+14;let ty=ev.clientY-60;
     if(tx+240>window.innerWidth)tx=ev.clientX-250;
@@ -807,19 +814,20 @@ function exportWhatsApp(){
   const tabName=activeTab?activeTab.textContent.trim():'Panorama';
   let txt='*PIPPA Regulacao PET — Analise de Impacto Regulatorio*\n';
   txt+='_Fauna Silvestre | SEBRAE Nacional — UPP_\n\n';
-  txt+='*Cadeia PET Silvestre no Brasil*\n';
-  txt+='Total: 182.052 estabelecimentos (6 CNAEs)\n';
+  txt+='*Universo Economico PET no Brasil*\n';
+  txt+='Total: 182.721 estabelecimentos (7 CNAEs)\n';
   txt+='Pet Shops: 117.165 | Veterinarias: 46.580\n';
-  txt+='Criadores: 6.230 | Fab. Racao: 4.912 | Atacadista: 7.165\n';
-  txt+='Empregos formais (RAIS 2025): 233.482\n';
-  txt+='96,6% sao MPEs (MEI + ME + EPP)\n\n';
+  txt+='Criadores: 6.230 | Criacao Aves: 669 | Fab. Racao: 4.912 | Atacadista: 7.165\n';
+  txt+='Empregos formais (RAIS 2025): 238.287\n';
+  txt+='96,5% sao MPEs (MEI + ME + EPP)\n\n';
   txt+='*IN IBAMA — Lista de Especies Silvestres*\n';
-  txt+='52 especies autorizadas (51 aves + 1 reptil)\n';
+  txt+='52 especies propostas para autorizacao (51 aves + 1 reptil)\n';
   txt+='Prazos: 90 dias (cessar reproducao) | 180 dias (alienar especimes)\n\n';
   txt+='*Impacto por Segmento*\n';
   txt+='Criadouros: ALTO | Pet Shops: ALTO\n';
   txt+='Insumos Pet: MEDIO | Veterinarias: POSITIVO\n\n';
   txt+='Consulta Publica: brasilparticipativo.presidencia.gov.br/processes/listaestimacao/f/6223/\n\n';
+  txt+='_Universo economico de referencia — nao equivale ao numero de empresas diretamente sujeitas a IN_\n';
   txt+='_Fonte: Receita Federal + RAIS 2025 (Observatorio Sebrae) | IBAMA 2026_';
   const url='https://wa.me/?text='+encodeURIComponent(txt);
   window.open(url,'_blank');
